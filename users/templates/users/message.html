@@ -1,0 +1,21 @@
+{% extends 'mai.html' %}
+
+{% block content %}
+  <main class="messagePage my-xl">
+    <div class="content-box">
+      <div class="message">
+        <a class="backButton" href="{% url 'inbox' %}"><i class="im im-angle-left"></i></a>
+        <h2 class="message__subject">{{receiv.subject}}</h4>
+          {% if receiv.sender != None %}
+          <a href="{% url 'user-profile' receiv.sender.Id%}" class="message__author">{{receiv.sendername}}</a>
+          {% else %}
+          <a class="message__author">{{receiv.sendername}}</a>
+          {% endif %}
+          <p class="message__date">{{receiv.created}}</p>
+          <div class="message__body">
+            {{receiv.body|linebreaksbr}}
+          </div>
+      </div>
+    </div>
+  </main>
+{% endblock content %}
